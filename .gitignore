@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Session memory scaffolding (from `remember` skill, not project source)
+.remember/
+
+# Future: Node toolchain (not yet scaffolded)
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.npm/
+npm-debug.log*
