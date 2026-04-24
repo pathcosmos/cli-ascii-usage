@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ghong/cli-ascii-usage.git"
+    "url": "git+https://github.com/pathcosmos/cli-ascii-usage.git"
   },
   "keywords": [
     "disk",
