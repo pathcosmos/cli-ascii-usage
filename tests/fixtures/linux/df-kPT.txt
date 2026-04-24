@@ -1,0 +1,10 @@
+Filesystem                        Type     1024-blocks      Used Available Capacity Mounted on
+tmpfs                             tmpfs         1621792      2312   1619480       1% /run
+/dev/mapper/ubuntu--vg-ubuntu--lv ext4        102687672  34567892  62883256      36% /
+tmpfs                             tmpfs         8108960         0   8108960       0% /dev/shm
+tmpfs                             tmpfs            5120         4      5116       1% /run/lock
+/dev/sda2                         ext4          1013292    146528    797860      16% /boot
+/dev/mapper/ubuntu--vg-home--lv   ext4        378915840 201234567 158267111      57% /home
+/dev/sdb1                         ext4       1922728684 983421112 841234560      54% /mnt/data
+tmpfs                             tmpfs         1621792       124   1621668       1% /run/user/1000
+overlay                           overlay     102687672  34567892  62883256      36% /var/lib/docker/overlay2/abc123/merged

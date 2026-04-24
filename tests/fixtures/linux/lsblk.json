@@ -1,0 +1,91 @@
+{
+   "blockdevices": [
+      {
+         "name": "sda",
+         "kname": "sda",
+         "size": 512110190592,
+         "type": "disk",
+         "model": "Samsung SSD 860 EVO 500GB",
+         "mountpoint": null,
+         "fstype": null,
+         "children": [
+            {
+               "name": "sda1",
+               "kname": "sda1",
+               "size": 1048576,
+               "type": "part",
+               "model": null,
+               "mountpoint": null,
+               "fstype": null
+            },
+            {
+               "name": "sda2",
+               "kname": "sda2",
+               "size": 1073741824,
+               "type": "part",
+               "model": null,
+               "mountpoint": "/boot",
+               "fstype": "ext4"
+            },
+            {
+               "name": "sda3",
+               "kname": "sda3",
+               "size": 510983798784,
+               "type": "part",
+               "model": null,
+               "mountpoint": null,
+               "fstype": "LVM2_member",
+               "children": [
+                  {
+                     "name": "ubuntu--vg-ubuntu--lv",
+                     "kname": "dm-0",
+                     "size": 107374182400,
+                     "type": "lvm",
+                     "model": null,
+                     "mountpoint": "/",
+                     "fstype": "ext4"
+                  },
+                  {
+                     "name": "ubuntu--vg-home--lv",
+                     "kname": "dm-1",
+                     "size": 394920886272,
+                     "type": "lvm",
+                     "model": null,
+                     "mountpoint": "/home",
+                     "fstype": "ext4"
+                  },
+                  {
+                     "name": "ubuntu--vg-swap--lv",
+                     "kname": "dm-2",
+                     "size": 8589934592,
+                     "type": "lvm",
+                     "model": null,
+                     "mountpoint": "[SWAP]",
+                     "fstype": "swap"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name": "sdb",
+         "kname": "sdb",
+         "size": 2000398934016,
+         "type": "disk",
+         "model": "WDC WD20EFRX-68E",
+         "mountpoint": null,
+         "fstype": null,
+         "children": [
+            {
+               "name": "sdb1",
+               "kname": "sdb1",
+               "size": 2000397885440,
+               "type": "part",
+               "model": null,
+               "mountpoint": "/mnt/data",
+               "fstype": "ext4"
+            }
+         ]
+      }
+   ]
+}
