@@ -1,0 +1,11 @@
+src/
+tests/
+docs/
+.remember/
+.github/
+.claude/
+.vitest-cache/
+coverage/
+*.config.ts
+tsconfig.json
+CHANGELOG.md

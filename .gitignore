@@ -10,4 +10,5 @@ dist/
 coverage/
 *.tsbuildinfo
 .npm/
+.vitest-cache/
 npm-debug.log*
