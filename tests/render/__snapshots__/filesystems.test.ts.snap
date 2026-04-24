@@ -1,0 +1,49 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renderFilesystems — header + default sort > renders FILESYSTEMS header + non-pseudo rows at width=100, sort=size desc 1`] = `
+"FILESYSTEMS
+MOUNT      DEVICE                     FSTYPE  SIZE (TiB)  USED (GiB)  FREE (GiB)  USE%  BAR         
+/mnt/data  /dev/sdb1                  ext4           1.8       931.3       931.3   50%  ██████▓▓▓▓▓▓
+/home      /dev/mapper/…-vg-home--lv  ext4           0.4       191.9       175.9   52%  ██████▓▓▓▓▓▓
+/          /dev/mapper/…-vg-root--lv  ext4           0.1        33.0        67.0   33%  ████▓▓▓▓▓▓▓▓"
+`;
+
+exports[`renderFilesystems — sort > sort=free produces a stable snapshot 1`] = `
+"FILESYSTEMS
+MOUNT      DEVICE                     FSTYPE  SIZE (TiB)  USED (GiB)  FREE (GiB)  USE%  BAR         
+/mnt/data  /dev/sdb1                  ext4           1.8       931.3       931.3   50%  ██████▓▓▓▓▓▓
+/home      /dev/mapper/…-vg-home--lv  ext4           0.4       191.9       175.9   52%  ██████▓▓▓▓▓▓
+/          /dev/mapper/…-vg-root--lv  ext4           0.1        33.0        67.0   33%  ████▓▓▓▓▓▓▓▓"
+`;
+
+exports[`renderFilesystems — sort > sort=name produces a stable snapshot 1`] = `
+"FILESYSTEMS
+MOUNT      DEVICE                     FSTYPE  SIZE (TiB)  USED (GiB)  FREE (GiB)  USE%  BAR         
+/          /dev/mapper/…-vg-root--lv  ext4           0.1        33.0        67.0   33%  ████▓▓▓▓▓▓▓▓
+/home      /dev/mapper/…-vg-home--lv  ext4           0.4       191.9       175.9   52%  ██████▓▓▓▓▓▓
+/mnt/data  /dev/sdb1                  ext4           1.8       931.3       931.3   50%  ██████▓▓▓▓▓▓"
+`;
+
+exports[`renderFilesystems — sort > sort=size produces a stable snapshot 1`] = `
+"FILESYSTEMS
+MOUNT      DEVICE                     FSTYPE  SIZE (TiB)  USED (GiB)  FREE (GiB)  USE%  BAR         
+/mnt/data  /dev/sdb1                  ext4           1.8       931.3       931.3   50%  ██████▓▓▓▓▓▓
+/home      /dev/mapper/…-vg-home--lv  ext4           0.4       191.9       175.9   52%  ██████▓▓▓▓▓▓
+/          /dev/mapper/…-vg-root--lv  ext4           0.1        33.0        67.0   33%  ████▓▓▓▓▓▓▓▓"
+`;
+
+exports[`renderFilesystems — sort > sort=use% produces a stable snapshot 1`] = `
+"FILESYSTEMS
+MOUNT      DEVICE                     FSTYPE  SIZE (TiB)  USED (GiB)  FREE (GiB)  USE%  BAR         
+/home      /dev/mapper/…-vg-home--lv  ext4           0.4       191.9       175.9   52%  ██████▓▓▓▓▓▓
+/mnt/data  /dev/sdb1                  ext4           1.8       931.3       931.3   50%  ██████▓▓▓▓▓▓
+/          /dev/mapper/…-vg-root--lv  ext4           0.1        33.0        67.0   33%  ████▓▓▓▓▓▓▓▓"
+`;
+
+exports[`renderFilesystems — sort > sort=used produces a stable snapshot 1`] = `
+"FILESYSTEMS
+MOUNT      DEVICE                     FSTYPE  SIZE (TiB)  USED (GiB)  FREE (GiB)  USE%  BAR         
+/mnt/data  /dev/sdb1                  ext4           1.8       931.3       931.3   50%  ██████▓▓▓▓▓▓
+/home      /dev/mapper/…-vg-home--lv  ext4           0.4       191.9       175.9   52%  ██████▓▓▓▓▓▓
+/          /dev/mapper/…-vg-root--lv  ext4           0.1        33.0        67.0   33%  ████▓▓▓▓▓▓▓▓"
+`;
