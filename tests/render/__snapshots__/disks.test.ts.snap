@@ -1,0 +1,8 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renderDisks > renders PHYSICAL DISKS header + both disks at width=80, no color 1`] = `
+"PHYSICAL DISKS
+ID      MODEL              SIZE (TiB)  USED (TiB)  FREE (GiB)  USE%  BAR        
+disk3   APPLE SSD AP1024N         0.9         0.4       507.6   45%  █████▓▓▓▓▓▓
+disk13  External 2TB              1.8         1.0       790.0   58%  ██████▓▓▓▓▓"
+`;

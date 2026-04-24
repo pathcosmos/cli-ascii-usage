@@ -30,3 +30,15 @@ export function pickColumnUnit(values: readonly number[], base: UnitBase): UnitL
   const e = exponentFor(max, base);
   return unitTable(base)[e] ?? 'B';
 }
+
+/**
+ * Format `n` using a specific unit (bypasses per-value unit picking). Used by
+ * render layers to keep a column in one unit so values are visually aligned.
+ */
+export function formatInUnit(n: number, unit: UnitLabel, base: UnitBase): string {
+  const table = unitTable(base);
+  const e = table.indexOf(unit);
+  if (e < 0) return formatBytes(n, base);
+  if (e === 0) return `${Math.round(n)}`;
+  return (n / base ** e).toFixed(1);
+}
