@@ -4,7 +4,7 @@
   "description": "ASCII disk usage (physical disks, partitions, filesystems) for macOS and Linux.",
   "type": "module",
   "bin": {
-    "dleft": "./dist/cli.js"
+    "dleft": "dist/cli.js"
   },
   "files": [
     "dist",
