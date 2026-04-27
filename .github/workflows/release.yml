@@ -24,14 +24,25 @@ jobs:
           node-version: 24
           cache: npm
 
+      - name: Dump and remove setup-node .npmrc (block OIDC bypass via _auth)
+        run: |
+          echo "NPM_CONFIG_USERCONFIG = $NPM_CONFIG_USERCONFIG"
+          if [ -n "$NPM_CONFIG_USERCONFIG" ] && [ -f "$NPM_CONFIG_USERCONFIG" ]; then
+            echo "--- contents ---"
+            cat "$NPM_CONFIG_USERCONFIG" | sed 's/=.*/=<redacted>/'
+            echo "--- removing ---"
+            rm "$NPM_CONFIG_USERCONFIG"
+          fi
+          echo "--- npm config _auth ---"
+          npm config get _auth || true
+          echo "--- npm config registry ---"
+          npm config get registry
+
       - name: Show toolchain + OIDC env
         run: |
           node --version
           npm --version
           echo "ACTIONS_ID_TOKEN_REQUEST_URL set? $([ -n \"$ACTIONS_ID_TOKEN_REQUEST_URL\" ] && echo yes || echo no)"
-          echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN set? $([ -n \"$ACTIONS_ID_TOKEN_REQUEST_TOKEN\" ] && echo yes || echo no)"
-          echo "--- npm config ---"
-          npm config list -l | grep -E "^(registry|provenance|always-auth|_auth)" || echo "(no matches)"
 
       - name: Install
         run: npm ci
@@ -47,3 +58,5 @@ jobs:
 
       - name: Publish (verbose, OIDC trusted publishing)
         run: npm publish --provenance --access public --loglevel=verbose
+        env:
+          NPM_CONFIG_USERCONFIG: ""

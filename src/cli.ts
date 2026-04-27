@@ -7,7 +7,7 @@ import { defaultRunner } from './runner.js';
 import { render } from './render/index.js';
 import { getTerminalWidth } from './render/width.js';
 
-const VERSION = '0.1.6';
+const VERSION = '0.1.7';
 
 const USAGE = `Usage: dleft [options]
 
