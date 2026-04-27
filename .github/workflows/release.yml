@@ -6,7 +6,10 @@ on:
 
 permissions:
   contents: read
-  id-token: write  # required for OIDC provenance
+  id-token: write  # required for OIDC trusted publishing + provenance
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
 
 jobs:
   publish:
@@ -34,7 +37,9 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Publish to npm (keyless, with provenance)
+      - name: Publish to npm (keyless OIDC trusted publishing, with provenance)
         run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        # No NODE_AUTH_TOKEN: npm CLI detects the GitHub OIDC token via the
+        # id-token:write permission and authenticates directly. Configure the
+        # trusted publisher at:
+        #   https://www.npmjs.com/settings/<account>/trusted-publishers
