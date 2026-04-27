@@ -8,6 +8,11 @@ on:
 permissions:
   contents: read
 
+env:
+  # Force checkout/setup-node to run on Node 24 (default from 2026-06-02);
+  # silences the deprecation warning and surfaces any incompat early.
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
   test:
     strategy:
