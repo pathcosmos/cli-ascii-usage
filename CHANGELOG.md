@@ -2,6 +2,12 @@
 
 All notable changes to `dleft` are documented here. Format: [Keep a Changelog](https://keepachangelog.com/), [Semantic Versioning](https://semver.org/).
 
+## [0.1.2] - 2026-04-27
+
+### Changed
+- CI release workflow now uses npm OIDC trusted publishing (no NPM_TOKEN secret required). Provenance attestation is unchanged.
+- Added npm version badge to README.
+
 ## [0.1.1] - 2026-04-27
 
 ### Fixed

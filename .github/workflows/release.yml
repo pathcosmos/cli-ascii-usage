@@ -6,7 +6,7 @@ on:
 
 permissions:
   contents: read
-  id-token: write  # required for provenance attestation (sigstore via GitHub OIDC)
+  id-token: write  # required for OIDC trusted publishing + provenance attestation
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
@@ -37,12 +37,9 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Publish to npm (with provenance)
-        # First publish uses NPM_TOKEN (npm trusted publishing requires the
-        # package to already exist). After v0.1.0 lands, configure trusted
-        # publishing on the package settings page and this token becomes
-        # unused. Provenance is independent of the auth method — driven by
-        # id-token:write + --provenance flag.
+      - name: Publish to npm (keyless OIDC trusted publishing, with provenance)
         run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        # No NODE_AUTH_TOKEN needed — npm CLI ≥ 11.5.1 reads the GitHub OIDC
+        # token via the id-token:write permission and exchanges it directly.
+        # Trust is configured at:
+        #   https://www.npmjs.com/package/@pathcosmos/dleft/access

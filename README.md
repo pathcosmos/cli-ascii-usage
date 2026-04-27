@@ -1,6 +1,7 @@
 # dleft
 
 [![CI](https://github.com/pathcosmos/cli-ascii-usage/actions/workflows/ci.yml/badge.svg)](https://github.com/pathcosmos/cli-ascii-usage/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/@pathcosmos/dleft.svg)](https://www.npmjs.com/package/@pathcosmos/dleft)
 ![Node](https://img.shields.io/badge/node-%E2%89%A522-brightgreen)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 ![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux-lightgrey)
