@@ -2,15 +2,15 @@
 
 All notable changes to `dleft` are documented here. Format: [Keep a Changelog](https://keepachangelog.com/), [Semantic Versioning](https://semver.org/).
 
-## [0.1.3] - 2026-04-27
+## [0.1.4] - 2026-04-27
 
 ### Changed
-- CI release workflow now uses npm OIDC trusted publishing (no NPM_TOKEN secret required). Provenance attestation is unchanged.
-- Workflow activates `npm@11.6.0` via corepack before publish — actions/setup-node@v4 ships npm 10.x by default, which predates trusted-publishing support. Self-upgrading via `npm install -g npm@latest` proved fragile; corepack avoids the conflict.
+- Release workflow runs on Node 24 (ships npm ≥11.5.1 natively, supports OIDC trusted publishing). Drops the brittle npm self-upgrade / corepack-activate dance.
+- Trusted publishing is now keyless: no NPM_TOKEN secret in CI, just GitHub's `id-token: write` permission and the npm package's trusted-publisher whitelist.
 - Added npm version badge to README.
 
 ### Note
-- v0.1.2 was tagged twice as a publish attempt but neither reached npm (first hit anonymous-PUT 404 from the old npm; second hit a self-upgrade module-not-found). v0.1.3 is the first keyless-publishing release. Skipped 0.1.2 so the version line on npm matches the version line on git tags.
+- v0.1.2 / v0.1.3 were publish attempts that never reached npm (npm 10.x doesn't speak OIDC; corepack `--activate` doesn't take effect in the same shell session). Skipped 0.1.2/0.1.3 on the npm version line; v0.1.4 is the first successful keyless release. CI is Node 22+24 matrix; release pinned to Node 24 for npm version.
 
 ## [0.1.1] - 2026-04-27
 

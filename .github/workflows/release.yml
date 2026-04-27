@@ -18,17 +18,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node 24 (ships with npm ≥11.5.1 for OIDC trusted publishing)
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           registry-url: https://registry.npmjs.org
           cache: npm
 
-      - name: Activate npm 11 via corepack (OIDC trusted publishing needs ≥11.5.1)
+      - name: Show toolchain versions
         run: |
-          corepack enable
-          corepack prepare npm@11.6.0 --activate
+          node --version
           npm --version
 
       - name: Install
