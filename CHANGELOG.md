@@ -2,20 +2,13 @@
 
 All notable changes to `dleft` are documented here. Format: [Keep a Changelog](https://keepachangelog.com/), [Semantic Versioning](https://semver.org/).
 
-## [0.1.5] - 2026-04-27
-
-### Fixed
-- Drop `registry-url` from `actions/setup-node` config in release workflow. With it, setup-node writes a `.npmrc` containing `_authToken=${NODE_AUTH_TOKEN}`, and an empty token from a missing/stale NPM_TOKEN short-circuits the OIDC trusted-publishing flow → anonymous PUT → 404. Without registry-url, npm CLI's OIDC handshake takes over.
-
-## [0.1.4] - 2026-04-27
+## [0.1.7] - 2026-04-27
 
 ### Changed
-- Release workflow runs on Node 24 (ships npm ≥11.5.1 natively, supports OIDC trusted publishing). Drops the brittle npm self-upgrade / corepack-activate dance.
-- Trusted publishing is now keyless: no NPM_TOKEN secret in CI, just GitHub's `id-token: write` permission and the npm package's trusted-publisher whitelist.
-- Added npm version badge to README.
+- Release workflow reverted to NPM_TOKEN authentication after a failed migration attempt to OIDC trusted publishing. Provenance attestation is unchanged (it's driven by `id-token: write` + sigstore, independent of npm auth method). Added an npm version badge to the README.
 
 ### Note
-- v0.1.2 / v0.1.3 were publish attempts that never reached npm (npm 10.x doesn't speak OIDC; corepack `--activate` doesn't take effect in the same shell session). Skipped 0.1.2/0.1.3 on the npm version line; v0.1.4 is the first successful keyless release. CI is Node 22+24 matrix; release pinned to Node 24 for npm version.
+- Several intermediate versions (v0.1.2 through v0.1.6) were tagged but never landed on npm. The trusted-publishing migration hit a chain of issues: npm 10.x predates the OIDC support; `npm install -g npm@latest` self-upgrade-crashed; `corepack prepare --activate` didn't take effect in the same shell; once on npm 11.11 the publish still got rejected because something kept setting an `_auth` config value that bypassed OIDC. Reverted to the working token-based flow; trusted publishing is a follow-up.
 
 ## [0.1.1] - 2026-04-27
 
