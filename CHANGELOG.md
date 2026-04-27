@@ -2,6 +2,11 @@
 
 All notable changes to `dleft` are documented here. Format: [Keep a Changelog](https://keepachangelog.com/), [Semantic Versioning](https://semver.org/).
 
+## [0.1.5] - 2026-04-27
+
+### Fixed
+- Drop `registry-url` from `actions/setup-node` config in release workflow. With it, setup-node writes a `.npmrc` containing `_authToken=${NODE_AUTH_TOKEN}`, and an empty token from a missing/stale NPM_TOKEN short-circuits the OIDC trusted-publishing flow → anonymous PUT → 404. Without registry-url, npm CLI's OIDC handshake takes over.
+
 ## [0.1.4] - 2026-04-27
 
 ### Changed
