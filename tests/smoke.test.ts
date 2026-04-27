@@ -90,4 +90,37 @@ describe('smoke — built dist/cli.js', () => {
     expect(code).toBe(0);
     expect(stdout.includes('\x1b[')).toBe(false);
   });
+
+  it('runs via symlink (regression: macOS /tmp → /private/tmp + npm .bin shims)', async () => {
+    // Without realpathSync in isEntryPoint, an invocation path that resolves
+    // through a symlink mismatches import.meta.url (Node ESM resolves
+    // symlinks; pathToFileURL doesn't), so main() never runs and --version
+    // exits 0 with no output. This test catches that regression.
+    const { mkdtempSync, symlinkSync, rmSync } = await import('node:fs');
+    const { tmpdir } = await import('node:os');
+    const symlinkDir = mkdtempSync(resolve(tmpdir(), 'dleft-symlink-'));
+    const linkPath = resolve(symlinkDir, 'cli.js');
+    try {
+      symlinkSync(distCli, linkPath);
+      const { stdout, code } = await new Promise<{ stdout: string; code: number }>(
+        (resolveOnce) => {
+          execFile(process.execPath, [linkPath, '--version'], (err, out) => {
+            if (err) {
+              const e = err as NodeJS.ErrnoException & { code?: number | string };
+              resolveOnce({
+                stdout: typeof out === 'string' ? out : '',
+                code: typeof e.code === 'number' ? e.code : 1,
+              });
+            } else {
+              resolveOnce({ stdout: out, code: 0 });
+            }
+          });
+        },
+      );
+      expect(code).toBe(0);
+      expect(stdout.trim()).toMatch(/^\d+\.\d+\.\d+/);
+    } finally {
+      rmSync(symlinkDir, { recursive: true, force: true });
+    }
+  });
 });

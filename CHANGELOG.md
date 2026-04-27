@@ -2,7 +2,15 @@
 
 All notable changes to `dleft` are documented here. Format: [Keep a Changelog](https://keepachangelog.com/), [Semantic Versioning](https://semver.org/).
 
-## [0.1.0] - 2026-04-24
+## [0.1.1] - 2026-04-27
+
+### Fixed
+- `dleft --version` (and any other invocation) silently exited 0 with no output when run through a symlinked path — including npm's `.bin/dleft` shim and macOS `/tmp` → `/private/tmp`. Root cause: `isEntryPoint()` compared `import.meta.url` (symlink-resolved) against `pathToFileURL(argv[1])` (raw), so they mismatched. Fix: realpath argv[1] before the comparison. Regression test in `tests/smoke.test.ts`.
+
+### Changed
+- Renamed package to `@pathcosmos/dleft` (npm rejected the unscoped `dleft` as too similar to `defu`). The `dleft` bin command name is unchanged.
+
+## [0.1.0] - 2026-04-27
 
 ### Added
 - CLI entry (`dleft`) with `util.parseArgs`-based flag handling.

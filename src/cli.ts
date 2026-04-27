@@ -1,12 +1,13 @@
 import { parseArgs } from 'node:util';
 import { pathToFileURL } from 'node:url';
+import { realpathSync } from 'node:fs';
 import type { OnlySection, RenderOptions, SortField } from './model.js';
 import { collect } from './collectors/index.js';
 import { defaultRunner } from './runner.js';
 import { render } from './render/index.js';
 import { getTerminalWidth } from './render/width.js';
 
-const VERSION = '0.1.0';
+const VERSION = '0.1.1';
 
 const USAGE = `Usage: dleft [options]
 
@@ -174,7 +175,12 @@ function isEntryPoint(): boolean {
   const entry = process.argv[1];
   if (!entry) return false;
   try {
-    return import.meta.url === pathToFileURL(entry).href;
+    // Resolve symlinks on argv[1]; Node's ESM loader already resolves them
+    // when computing import.meta.url, so a raw pathToFileURL(argv[1]) on
+    // a symlinked path (e.g. macOS /tmp → /private/tmp, or npm's .bin
+    // shims) compares false against import.meta.url and main() never runs.
+    const realEntry = realpathSync(entry);
+    return import.meta.url === pathToFileURL(realEntry).href;
   } catch {
     return false;
   }
