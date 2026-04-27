@@ -36,15 +36,15 @@ node dist/cli.js              # run once
 npm link                      # optional: expose `dleft` globally
 ```
 
-### From npm (after publish)
+### From npm
 
 ```sh
-npm install -g dleft
+npm install -g @pathcosmos/dleft
 # or one-shot:
-npx dleft
+npx @pathcosmos/dleft
 ```
 
-Requires Node.js ≥ 22. Single-file ESM bundle, no postinstall hooks.
+The bin name is `dleft` (so the global install gives you `dleft`, not `pathcosmos-dleft`). Requires Node.js ≥ 22. Single-file ESM bundle, no postinstall hooks.
 
 ## Usage
 

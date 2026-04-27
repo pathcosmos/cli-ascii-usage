@@ -1,5 +1,5 @@
 {
-  "name": "dleft",
+  "name": "@pathcosmos/dleft",
   "version": "0.1.0",
   "description": "ASCII disk usage (physical disks, partitions, filesystems) for macOS and Linux.",
   "type": "module",
